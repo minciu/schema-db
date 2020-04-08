@@ -1,0 +1,80 @@
+use myrestaurants
+
+
+db.createCollection('providers');
+
+db.providers.insert({
+name:"Restaurant McRestaurantFace",
+description: "It's fine dining. Here at Fancy Restaurants inc., we strive to be the best.",
+tags:["mediterranean",
+      "bar",
+      "pizza"],
+main_image:  db.images.find()[0]._id,
+other_images: [
+db.images.find()[2]._id,
+db.images.find()[5]._id
+]
+});
+
+db.menu.insert({
+category: "breakfast",
+items: [
+db.menu_items.find()[1]._id,
+db.menu_items.find()[2]._id,
+db.menu_items.find()[3]._id
+]}
+{
+category: "dinner",
+items: [
+db.menu_items.find()[4]._id,
+db.menu_items.find()[5]._id,
+db.menu_items.find()[6]._id
+]}
+);
+
+db.images.insert (
+{
+    "length" : <num>,
+    "chunkSize" : <num>,
+    "uploadDate" : <timestamp>,
+    "md5" : <hash>,
+    "filename" : <string>,
+    "contentType" : <string>,
+    "aliases" : <string array>,
+    "metadata" : <any>,
+
+	
+});
+
+db.menu_items.insert({
+name: "Spaghetti and meatballs", 
+image:db.images.find()[0]._id,
+price:7.50, 
+currency: "USD", 
+ingredients: [
+db.ingredients.find()[1]._id,
+db.ingredients.find()[3]._id
+]
+});
+
+db.ingredients.insert({
+name: "Chicken eggs", 
+allergen: true, 
+vegetarian: true, 
+vegan: false
+});
+
+db.reviews.insert({
+provider: db.providers.find()[1]._id, 
+reviewer: db.users.find()[1]._id, 
+score: 2.5, 
+description: "It was food, I guess.",
+time_created:  ISODate("2014-02-10T10:50:42.389Z"), 
+time_modified:  ISODate("2014-02-10T10:50:42.389Z")
+});
+
+db.users.insert({
+name: "John Doe"
+});
+
+
